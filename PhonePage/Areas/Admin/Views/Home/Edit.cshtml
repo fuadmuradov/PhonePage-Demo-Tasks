@@ -1,0 +1,43 @@
+﻿@model Teacher
+@{
+    ViewData["Title"] = "Edit";
+    List<TeacherHobby> thobby = ViewBag.TeacherHobbies;
+
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="mb-3">
+        <label>Name</label>
+        <input type="text" class="form-control" asp-for="Name"><br />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="mb-3">
+       <label asp-for="HobbyIds">Hobbies</label>
+       <select asp-for="HobbyIds" class="form-select">
+           
+           @{ 
+               int temp = 0;
+               foreach (var item in ViewBag.Hobbies)
+               {
+
+
+               @if (temp < thobby.Count && item.id == thobby.Skip(temp).FirstOrDefault().Hobbyid )
+               {
+                <option value="@item.id" selected>@item.Name</option>
+                   temp++;
+               }
+               else
+               {
+                <option value="@item.id">@item.Name</option>
+               }
+                   }
+               }
+       </select>
+        <span asp-validation-for="HobbyIds"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+

@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "All Phones";
+}
+<h1>@ViewData["Title"]</h1>
+
+@model List<Specification>
+
+<div class="container">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="kkkgg owl-theme">
+                    <a href="single-product.html">
+                        <div class="featured-item">
+                            <img src="~/images/@item.Image" style="width: 250px!important; height:250px" alt="Item 1">
+                            <h4>@item.PhoneModel</h4>
+                            <h6>$@item.Price</h6>
+                            <h6><a asp-controller="Home" asp-action="Index" asp-route-id="@item.id"><button class=" btn btn-info">Info</button></a></h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

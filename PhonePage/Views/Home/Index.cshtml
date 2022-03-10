@@ -1,0 +1,46 @@
+﻿@model Specification
+
+<div class="container">
+    <div class="mb-3 card text-dark bg-light" style="max-width: 1100px; height:500px">
+        <div class="row g-0">
+            <div class="col-md-5" style="height:600px">
+                <img src="~/images/@Model.Image" class="img-fluid rounded-start" alt="..." style="height: 500px">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h5 class="card-title">Marka</h5>
+                    <p class="card-text">@Model.PhoneMarka</p>
+
+                    <h5 class="card-title">Model</h5>
+                    <p class="card-text">@Model.PhoneModel</p>
+
+                    <h5 class="card-title">Price</h5>
+                    <p class="card-text">@Model.Price</p>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mb-3 card text-dark bg-light" style="max-width: 1100px; height:500px">
+        <div class="row g-0">
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title">Specification</h5>
+                    @Html.Raw(Model.Spesific1)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title">Specification</h5>
+                    @Html.Raw(Model.Spesific2)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,58 @@
+﻿@model Specification
+
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label>Marka</label>
+        <input type="text" class="form-control" asp-for="PhoneMarka"><br />
+        <span asp-validation-for="PhoneMarka"></span>
+    </div>
+    <div class="mb-3">
+        <label>Model</label>
+        <input type="text" class="form-control" asp-for="PhoneModel"><br />
+        <span asp-validation-for="PhoneModel"></span>
+    </div>
+    <div class="mb-3">
+        <label>Product Code</label>
+        <input type="text" class="form-control" asp-for="ProductCode"><br />
+        <span asp-validation-for="ProductCode"></span>
+    </div>
+    <div class="mb-3">
+        <label>Price</label>
+        <input type="number" class="form-control" asp-for="Price"><br />
+        <span asp-validation-for="Price"></span>
+    </div>
+    <div class="mb-3">
+        <label>Photo</label>
+        <input type="file" class="form-control" asp-for="Photo"><br />
+        <span asp-validation-for="Photo"></span>
+    </div>
+    <div class="mb-3">
+        <label>Specification 1</label>
+        <textarea class="form-control" asp-for="Spesific1"></textarea>
+        <br />
+        <span asp-validation-for="Spesific1"></span>
+    </div>
+    <div class="mb-3">
+
+        <label>Specification 2</label>
+        <textarea class="form-control" asp-for="Spesific2"></textarea>
+        <br />
+        <span asp-validation-for="Spesific2"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section script{
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/22.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector('#Spesific1'))
+            .catch(error => {
+                console.log(error)
+            });
+        ClassicEditor.create(document.querySelector('#Spesific2'))
+            .catch(error => {
+                console.log(error)
+            });
+    </script>
+}

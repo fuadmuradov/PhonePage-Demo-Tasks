@@ -1,0 +1,73 @@
+﻿@model RegisterVM
+
+@section Css{
+    <link rel="stylesheet" href="~/login/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/login/css/animate.css">
+    <link rel="stylesheet" href="~/login/css/meanmenu.css">
+    <link rel="stylesheet" href="~/login/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/login/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/login/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/login/css/et-line-icon.css">
+    <link rel="stylesheet" href="~/login/css/reset.css">
+    <link rel="stylesheet" href="~/login/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/login/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/login/css/style.css">
+    <link rel="stylesheet" href="~/login/css/responsive.css">
+    <script src="~login/js/vendor/modernizr-2.8.3.min.js"></script>
+
+}
+@*Register start*@
+<div class="login-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <div class="login">
+                    <div class="login-form-container">
+                        <div class="login-text">
+                            <h2>Register</h2>
+                            <span>Please Register using account detail bellow.</span>
+                        </div>
+                        <div class="login-form">
+                            <form method="post">
+                                <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+                                <input asp-for="FirstName" type="text" placeholder="FirstName">
+                                <span class="text text-danger" asp-validation-for="FirstName">  </span>
+                                <input asp-for="LastName" type="text" placeholder="LastName">
+                                <span class="text text-danger" asp-validation-for="LastName">  </span>
+                                <input asp-for="UserName" type="text" placeholder="UserName">
+                                <span class="text text-danger" asp-validation-for="UserName">  </span>
+                                <input asp-for="Email" type="text" placeholder="Email">
+                                <span class="text text-danger" asp-validation-for="Email">  </span>
+                                <input asp-for="Password" type="password" placeholder="Password">
+                                <span class="text text-danger" asp-validation-for="Password">  </span>
+                                <input asp-for="ConfirmPassword" type="password" placeholder="Confirm Password">
+                                <span class="text text-danger" asp-validation-for="ConfirmPassword">  </span>
+                                <div class="button-box">
+
+                                    <button type="submit" class="default-btn">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Register end*@
+
+
+@section script{
+    <script src="js/vendor/jquery-1.12.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.meanmenu.js"></script>
+    <script src="js/jquery.magnific-popup.js"></script>
+    <script src="js/ajax-mail.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.mb.YTPlayer.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+
+}
