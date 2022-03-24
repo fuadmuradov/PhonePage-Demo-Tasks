@@ -1,0 +1,51 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Edit";
+    List<IdentityRole> identityRoles = ViewBag.Roles;
+    IList<string> userroles = ViewBag.UserRoles;
+
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="mb-3">
+        <label>Name</label>
+        <input type="text" class="form-control" asp-for="UserName"><br />
+        <span asp-validation-for="UserName"></span>
+    </div>
+    <div class="mb-3">
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="RoleId">User Roles</label>
+        <select asp-for="RoleId" class="form-select">
+            <option value="---">Select</option>
+            @{
+
+                foreach (var item in userroles)
+                {
+                    <option value="@item">@item</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="RoleId"></span>
+    </div>
+    @*<button asp-controller="User" asp-action="DeleteRole" type="submit" class="btn btn-danger">Delete Role</button>*@
+    <div class="mb-3">
+        <label asp-for="newRoleId">All Roles</label>
+        <select asp-for="newRoleId" class="form-select">
+            <option value="---">Select</option>
+            @{
+
+                foreach (var item in identityRoles)
+                {
+                    <option value="@item.Name">@item.Name</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="newRoleId"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -16,6 +16,9 @@ namespace PhonePage.Models
 
         [NotMapped]
         public List<string> RoleIds { get; set; }
-
+        [NotMapped]
+        public string RoleId { get; set; }
+        [NotMapped]
+        public string newRoleId { get; set; }
     }
 }

@@ -222,7 +222,7 @@ namespace PhonePage.Controllers
         }
 
 
-        public async Task<IActionResult> ForgetPassword()
+        public IActionResult ForgetPassword()
         {
             return View();
         }
