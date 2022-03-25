@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PhonePage.Extension;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace PhonePage.Controllers
 {
+   
     public class HomeController : Controller
     {
         private readonly MyContext db;

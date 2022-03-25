@@ -39,6 +39,10 @@ namespace PhonePage.Controllers
             }
         }
 
+        public async Task Logout()
+        {
+            await _signInManager.SignOutAsync();
+        }
 
         public async Task<IActionResult> SeedAdmin()
         {
@@ -172,11 +176,12 @@ namespace PhonePage.Controllers
                 User user = _userManager.FindByEmailAsync(login.Email.ToString()).Result;
                 if (await _userManager.FindByEmailAsync(login.Email) != null)
                 {
-                    Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager.PasswordSignInAsync(user.UserName, login.Password, false, false);
+                    Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager.PasswordSignInAsync(user.UserName, login.Password, true, false);
                     if (signInResult.Succeeded)
                     {
+                        await _signInManager.SignInAsync(user, true);
                         return RedirectToAction("Create", "Home");
-
+                     
                     }
                     else
                     {
@@ -201,7 +206,7 @@ namespace PhonePage.Controllers
         }
 
 
-
+       
 
 
         public IActionResult Dashboard()

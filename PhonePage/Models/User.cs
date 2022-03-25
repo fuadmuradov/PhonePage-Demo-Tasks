@@ -20,5 +20,8 @@ namespace PhonePage.Models
         public string RoleId { get; set; }
         [NotMapped]
         public string newRoleId { get; set; }
+
+        public List<UserToProduct> UserToProducts { get; set; }
+
     }
 }

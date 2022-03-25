@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhonePage.Models;
 
 namespace PhonePage.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20220324212105_Product-and-UserToProduct-Tables")]
+    partial class ProductandUserToProductTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,36 +167,6 @@ namespace PhonePage.Migrations
                     b.ToTable("Hobbies");
                 });
 
-            modelBuilder.Entity("PhonePage.Models.Product", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("count")
-                        .HasColumnType("int");
-
-                    b.Property<string>("name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("price")
-                        .HasColumnType("int");
-
-                    b.Property<int>("productid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("src")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("totalPrice")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("PhonePage.Models.Specification", b =>
                 {
                     b.Property<int>("id")
@@ -344,28 +316,6 @@ namespace PhonePage.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("PhonePage.Models.UserToProduct", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserToProducts");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -436,41 +386,14 @@ namespace PhonePage.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("PhonePage.Models.UserToProduct", b =>
-                {
-                    b.HasOne("PhonePage.Models.Product", "Product")
-                        .WithMany("UserToProducts")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PhonePage.Models.User", "User")
-                        .WithMany("UserToProducts")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("PhonePage.Models.Hobby", b =>
                 {
                     b.Navigation("TeacherHobbies");
                 });
 
-            modelBuilder.Entity("PhonePage.Models.Product", b =>
-                {
-                    b.Navigation("UserToProducts");
-                });
-
             modelBuilder.Entity("PhonePage.Models.Teacher", b =>
                 {
                     b.Navigation("TeacherHobbies");
-                });
-
-            modelBuilder.Entity("PhonePage.Models.User", b =>
-                {
-                    b.Navigation("UserToProducts");
                 });
 #pragma warning restore 612, 618
         }

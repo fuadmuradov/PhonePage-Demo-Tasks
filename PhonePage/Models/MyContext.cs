@@ -14,6 +14,7 @@ namespace PhonePage.Models
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Hobby> Hobbies { get; set; }
         public DbSet<TeacherHobby> TeacherHobbies { get; set; }
-
+        public DbSet<Product> Products { get; set; }
+        public DbSet<UserToProduct> UserToProducts { get; set; }
     }
 }

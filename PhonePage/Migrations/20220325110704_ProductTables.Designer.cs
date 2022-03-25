@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhonePage.Models;
 
 namespace PhonePage.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20220325110704_ProductTables")]
+    partial class ProductTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,9 +181,6 @@ namespace PhonePage.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("price")
-                        .HasColumnType("int");
-
-                    b.Property<int>("productid")
                         .HasColumnType("int");
 
                     b.Property<string>("src")

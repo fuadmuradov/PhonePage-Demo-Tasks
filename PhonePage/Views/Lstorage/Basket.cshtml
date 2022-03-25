@@ -1,0 +1,179 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        .fa-cart-arrow-down {
+            font-size: 1.5rem;
+        }
+
+        #baketCountType {
+            position: absolute;
+            right: 4px;
+            top: -13px;
+            color: red;
+            font-weight: bold;
+            font-size: 20px;
+            background: burlywood;
+            border-radius: 12px;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#" ><span id="Username">Muradmuradov</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Lstorage" asp-action="Basket" style="position: relative;">
+                                    <i class="fa-solid fa-cart-arrow-down"></i> <span id="baketCountType">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+
+            <div class="row">
+                <table class="table" id="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Count</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Total Price</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <button id="btnApprove">Approve</button>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script >
+        let basketSale = document.getElementById("baketCountType");
+        let table = document.getElementById("table");
+        let newArray = JSON.parse(localStorage.getItem("basket")); //locats-de datami goturdum
+
+        function addBasketDetail() {
+            basketSale.innerText = (JSON.parse(localStorage.getItem("basket"))).length;
+        }
+
+        addBasketDetail();
+
+        newArray.forEach(element => {
+            let tr = document.createElement("tr");
+            let tdImage = document.createElement("td");
+            let img = document.createElement("img");
+            img.setAttribute("src", element.src);
+            tdImage.append(img);
+
+            let tdName = document.createElement("td");
+            tdName.innerText = element.name;
+
+
+            let tdPrice = document.createElement("td");
+            tdPrice.innerText = element.price;
+
+            let tdCount = document.createElement("td");
+            tdCount.innerText = element.count;
+
+            let totalPrice = document.createElement("td");
+            totalPrice.innerText = (parseInt(tdCount.innerText) * parseInt(tdPrice.innerText)) + "azn";
+
+
+            let tdPrivate = document.createElement("input");
+            tdPrivate.setAttribute("type", "hidden");
+            tdPrivate.setAttribute("value", `${element.prodid}`);
+
+            let tdRemove = document.createElement("td");
+            tdRemove.innerHTML = "<i class=\"fa-solid fa-trash\"></i>"
+            tdRemove.onclick = function () {
+                alert();
+
+            }
+            tr.append(tdPrivate, tdImage, tdName, tdCount, tdPrice, totalPrice, tdRemove);
+            table.lastElementChild.append(tr);
+
+        });
+
+           
+    
+    </script>
+
+    <script>
+        $(document).ready(() => {
+
+            $(document).on('click', '#btnApprove', (e) => { //e klik olunan yerin melumatlarini ozunde saxlayir
+
+                var str = $("#Username").text();
+                console.log(str);
+                $.ajax({
+                    url: '/Lstorage/Basket',
+                    type: 'POST',
+                    data: {
+                        username: str,
+                        products: newArray
+                    },
+                    success: (response) => {
+                        if (response.hasOwnProperty('status') && response.status === 200) {
+                            location.href = '/Lstorage/Index';
+                            localStorage.removeItem("basket");
+                        } else if (response.status === 400) {
+                            alert("Tapilmadi");
+                        }
+                    }
+                })
+            });
+        })
+    </script>
+
+
+</body>
+
+</html>
